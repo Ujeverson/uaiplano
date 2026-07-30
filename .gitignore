@@ -1,0 +1,15 @@
+node_modules/
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Pastas do professor (não fazem parte do pacote)
+documentos/
+planos/
+PUTS.md
+
+# Não incluir docs do brainstorming
+docs/
+.agents/skills/brainstorming/
+.agents/skills/writing-plans/
+skills-lock.json

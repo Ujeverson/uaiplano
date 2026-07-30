@@ -1,0 +1,36 @@
+{
+  "name": "uaiplano",
+  "version": "1.0.0",
+  "description": "Ferramenta de criação de planos de ensino no padrão FO-178 — SENAI/FATESG",
+  "bin": {
+    "uaiplano": "./bin/uaiplano.js"
+  },
+  "files": [
+    "bin/",
+    "scaffold/"
+  ],
+  "keywords": [
+    "plano-de-ensino",
+    "educacao",
+    "senai",
+    "fatesg",
+    "fo-178",
+    "ai-skills"
+  ],
+  "author": "Ujeverson Tavares",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ujeverson/uaiplano.git"
+  },
+  "homepage": "https://github.com/Ujeverson/uaiplano#readme",
+  "bugs": {
+    "url": "https://github.com/Ujeverson/uaiplano/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "test": "node tests/install.test.js"
+  }
+}

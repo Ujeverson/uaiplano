@@ -1,0 +1,11 @@
+# Não publicar no npm
+tests/
+docs/
+.agents/skills/brainstorming/
+.agents/skills/writing-plans/
+skills-lock.json
+documentos/
+planos/
+PUTS.md
+.gitignore
+.github/

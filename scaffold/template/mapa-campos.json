@@ -1,0 +1,356 @@
+{
+  "versao": "1.0",
+  "template": "FO-178 - 04 - fo-178 PLANO DE ENSINO.docx",
+  "descricao": "Mapeamento de campos do plano de ensino FO-178 para fontes de dados",
+
+  "pagina_1": {
+    "curso": {
+      "descricao": "Nome completo do curso",
+      "fontes": [
+        {
+          "prioridade": 1,
+          "origem": "ppc",
+          "agente": "uaiplano-diretrizes",
+          "localizacao": "Capa, após 'Projeto Pedagógico do Curso'"
+        },
+        {
+          "prioridade": 2,
+          "origem": "plano_antigo",
+          "agente": "uaiplano-extrator",
+          "localizacao": "Campo 'Curso'"
+        }
+      ],
+      "obrigatorio": true
+    },
+
+    "unidade_curricular": {
+      "descricao": "Nome da disciplina",
+      "fontes": [
+        {
+          "prioridade": 1,
+          "origem": "professor",
+          "agente": "uaiplano-supervisor",
+          "localizacao": "Pergunta direta ao professor"
+        },
+        {
+          "prioridade": 2,
+          "origem": "plano_antigo",
+          "agente": "uaiplano-extrator",
+          "localizacao": "Campo 'Unidade Curricular'"
+        }
+      ],
+      "validar_contra": "ppc.matriz_curricular",
+      "obrigatorio": true
+    },
+
+    "carga_horaria": {
+      "descricao": "Carga horária total da UC",
+      "fontes": [
+        {
+          "prioridade": 1,
+          "origem": "ppc",
+          "agente": "uaiplano-diretrizes",
+          "localizacao": "Matriz Curricular, coluna 'Total', linha da UC"
+        },
+        {
+          "prioridade": 2,
+          "origem": "plano_antigo",
+          "agente": "uaiplano-extrator",
+          "localizacao": "Campo 'Carga Horária'"
+        }
+      ],
+      "regra": "Usar para calcular total de aulas: CH / 2",
+      "obrigatorio": true
+    },
+
+    "docente": {
+      "descricao": "Nome do professor",
+      "fontes": [
+        {
+          "prioridade": 1,
+          "origem": "professor",
+          "agente": "uaiplano-supervisor",
+          "localizacao": "Pergunta direta ao professor"
+        },
+        {
+          "prioridade": 2,
+          "origem": "plano_antigo",
+          "agente": "uaiplano-extrator",
+          "localizacao": "Campo 'Docente/Instrutor'"
+        }
+      ],
+      "obrigatorio": true
+    },
+
+    "funcao": {
+      "descricao": "Função do perfil profissional",
+      "fontes": [
+        {
+          "prioridade": 1,
+          "origem": "ppc",
+          "agente": "uaiplano-diretrizes",
+          "localizacao": "Competências e Habilidades > Relação das Funções (tabela)"
+        },
+        {
+          "prioridade": 2,
+          "origem": "plano_antigo",
+          "agente": "uaiplano-extrator",
+          "localizacao": "Campo 'Função'"
+        }
+      ],
+      "obrigatorio": true
+    },
+
+    "subfuncao": {
+      "descricao": "Subfunção do perfil profissional",
+      "fontes": [
+        {
+          "prioridade": 1,
+          "origem": "ppc",
+          "agente": "uaiplano-diretrizes",
+          "localizacao": "Competências e Habilidades > Descrição das Funções"
+        },
+        {
+          "prioridade": 2,
+          "origem": "plano_antigo",
+          "agente": "uaiplano-extrator",
+          "localizacao": "Campo 'Subfunção'"
+        }
+      ],
+      "obrigatorio": true
+    },
+
+    "objetivo_geral": {
+      "descricao": "Objetivo geral da Unidade Curricular",
+      "fontes": [
+        {
+          "prioridade": 1,
+          "origem": "ppc",
+          "agente": "uaiplano-diretrizes",
+          "localizacao": "Competências e Habilidades > Competência Geral"
+        },
+        {
+          "prioridade": 2,
+          "origem": "plano_antigo",
+          "agente": "uaiplano-extrator",
+          "localizacao": "Campo 'Objetivo Geral da UC' ou 'Objetivo(s) do componente'"
+        }
+      ],
+      "obrigatorio": true
+    },
+
+    "estrategia_desafiadora": {
+      "tipo": {
+        "descricao": "Tipo da estratégia (checkbox)",
+        "opcoes": [
+          "Estudo de caso",
+          "Projeto (elaboração ou execução)",
+          "Situação-Problema",
+          "Pesquisa Aplicada"
+        ],
+        "fontes": [
+          {
+            "prioridade": 1,
+            "origem": "professor",
+            "agente": "uaiplano-redacao",
+            "localizacao": "Pergunta de múltipla escolha ao professor"
+          }
+        ],
+        "obrigatorio": true
+      },
+
+      "contextualizacao": {
+        "descricao": "Cenário que situa o aluno no desafio",
+        "fontes": [
+          {
+            "prioridade": 1,
+            "origem": "gerado",
+            "agente": "uaiplano-redacao",
+            "localizacao": "Redigido com base na escolha do professor e nos conhecimentos do ementário"
+          }
+        ],
+        "orientacao": "Apresentar cenário: como, por que, para que, tempo. Explicitar dados para reflexão do aluno.",
+        "obrigatorio": true
+      },
+
+      "desafio": {
+        "descricao": "Enunciado do problema/desafio",
+        "fontes": [
+          {
+            "prioridade": 1,
+            "origem": "gerado",
+            "agente": "uaiplano-redacao",
+            "localizacao": "Redigido enunciando o problema e atividades"
+          }
+        ],
+        "obrigatorio": true
+      },
+
+      "resultados_esperados": {
+        "descricao": "Entregas/rubricas esperadas dos alunos",
+        "fontes": [
+          {
+            "prioridade": 1,
+            "origem": "gerado",
+            "agente": "uaiplano-redacao",
+            "localizacao": "Redigido com base no desafio proposto"
+          }
+        ],
+        "vinculo": "Usado como base para criterios_avaliacao na grade de aulas",
+        "obrigatorio": true
+      }
+    }
+  },
+
+  "pagina_2": {
+    "grade_aulas": {
+      "descricao": "Tabela de aulas com todas as colunas",
+      "regra_geracao": "Total de linhas = carga_horaria / 2. Cada linha = 1 aula de 2h. Cada encontro = 2 aulas.",
+
+      "colunas": {
+        "aula_numero": {
+          "descricao": "Número sequencial e data da aula",
+          "origem": "calculado",
+          "formato": "Xª aula — dd/mm (dia)",
+          "regra": "Sequencial de 1 até (CH / 2). Cada encontro tem 2 aulas. Pular feriados do calendário acadêmico."
+        },
+
+        "ch": {
+          "descricao": "Carga horária da aula",
+          "origem": "fixo",
+          "valor": "2h/aula"
+        },
+
+        "fundamentos_capacidades": {
+          "descricao": "Capacidades técnicas, sociais, organizativas e metodológicas",
+          "fontes": [
+            {
+              "prioridade": 1,
+              "origem": "ppc",
+              "agente": "uaiplano-diretrizes",
+              "localizacao": "ANEXO I – Ementário, dentro da UC"
+            }
+          ],
+          "regra": "Distribuir entre todas as aulas conforme os conhecimentos",
+          "agente_redacao": "uaiplano-redacao"
+        },
+
+        "conhecimentos": {
+          "descricao": "Conteúdo programático da aula",
+          "fontes": [
+            {
+              "prioridade": 1,
+              "origem": "ppc",
+              "agente": "uaiplano-diretrizes",
+              "localizacao": "ANEXO I – Ementário, dentro da UC"
+            }
+          ],
+          "regra": "Distribuir todos os tópicos ao longo das aulas. Repetição permitida para aprofundamento.",
+          "agente_redacao": "uaiplano-redacao"
+        },
+
+        "estrategias_ensino": {
+          "descricao": "Metodologia de ensino da aula",
+          "origem": "gerado",
+          "agente": "uaiplano-redacao",
+          "opcoes": [
+            "Aula expositiva dialogada",
+            "Atividade em grupo",
+            "Sala invertida",
+            "Sala em U",
+            "Prática em laboratório de informática",
+            "Resolução de exercícios",
+            "Seminário apresentado pelos alunos",
+            "Estudo de caso dirigido"
+          ],
+          "regra": "Não repetir mesma estratégia em mais de 3 aulas consecutivas"
+        },
+
+        "criterios_avaliacao": {
+          "descricao": "Critérios baseados nas rubricas",
+          "origem": "gerado",
+          "agente": "uaiplano-redacao",
+          "vinculo": "resultados_esperados + conhecimentos da aula"
+        },
+
+        "instrumentos_avaliacao": {
+          "descricao": "Ferramentas de avaliação",
+          "origem": "gerado",
+          "agente": "uaiplano-redacao",
+          "opcoes": [
+            "Provas Dissertativas ou Objetivas",
+            "Testes de Múltipla Escolha",
+            "Listas de Exercícios",
+            "Redações e Ensaios",
+            "Seminário",
+            "Debate",
+            "Portfólios Coletivos ou Individuais",
+            "Estudos de Caso",
+            "Projetos de Pesquisa",
+            "Produções Audiovisuais",
+            "Construção de código ou software",
+            "Observação Sistemática",
+            "Relatórios Descritivos",
+            "Autoavaliação",
+            "Quizzes e Jogos Digitais",
+            "Simulados"
+          ]
+        },
+
+        "recursos_didaticos": {
+          "descricao": "Recursos e ambientes pedagógicos",
+          "fontes": [
+            {
+              "prioridade": 1,
+              "origem": "plano_antigo",
+              "agente": "uaiplano-extrator",
+              "localizacao": "Coluna 'RECURSOS'"
+            },
+            {
+              "prioridade": 2,
+              "origem": "gerado",
+              "agente": "uaiplano-redacao"
+            }
+          ],
+          "opcoes": [
+            "Sala comportamental",
+            "Laboratório de informática",
+            "Quadro branco",
+            "Pincel para quadro",
+            "Data Show / projetor",
+            "Apresentação em slides",
+            "Google Forms / formulários online",
+            "Notebook do professor",
+            "Smartphone dos alunos"
+          ]
+        }
+      }
+    },
+
+    "referencias_bibliograficas": {
+      "descricao": "Bibliografia básica e complementar",
+      "fontes": [
+        {
+          "prioridade": 1,
+          "origem": "ppc",
+          "agente": "uaiplano-diretrizes",
+          "localizacao": "ANEXO I – Ementário, dentro da UC"
+        },
+        {
+          "prioridade": 2,
+          "origem": "plano_antigo",
+          "agente": "uaiplano-extrator",
+          "localizacao": "Seção 'Referências Bibliográficas'"
+        }
+      ],
+      "regra": "Manter formatação ABNT. Separar em Básica e Complementar.",
+      "obrigatorio": true
+    },
+
+    "parecer_area_educacional": {
+      "descricao": "Parecer da coordenação pedagógica",
+      "origem": "nao_preencher",
+      "regra": "Deixar em branco — preenchido pela coordenação da faculdade"
+    }
+  }
+}
