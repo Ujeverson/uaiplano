@@ -2,7 +2,9 @@
   "name": "uaiplano",
   "version": "1.0.0",
   "description": "Ferramenta de criação de planos de ensino no padrão FO-178 — SENAI/FATESG",
-  "bin": "./bin/uaiplano.js",
+  "bin": {
+    "uaiplano": "bin/uaiplano.js"
+  },
   "files": [
     "bin/",
     "scaffold/"
@@ -19,7 +21,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ujeverson/uaiplano.git"
+    "url": "git+https://github.com/Ujeverson/uaiplano.git"
   },
   "homepage": "https://github.com/Ujeverson/uaiplano#readme",
   "bugs": {
