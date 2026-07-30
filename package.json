@@ -2,9 +2,7 @@
   "name": "uaiplano",
   "version": "1.0.0",
   "description": "Ferramenta de criação de planos de ensino no padrão FO-178 — SENAI/FATESG",
-  "bin": {
-    "uaiplano": "./bin/uaiplano.js"
-  },
+  "bin": "./bin/uaiplano.js",
   "files": [
     "bin/",
     "scaffold/"
