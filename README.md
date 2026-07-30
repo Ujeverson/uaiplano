@@ -7,7 +7,7 @@ na criação de planos de ensino para o padrão **FO-178 do SENAI/FATESG**.
 
 - [Node.js](https://nodejs.org/) versão 18 ou superior
 - IDE com assistente de IA que suporte skills
-  (Antigravity, Cline, Cursor, etc.)
+  (Antigravity, VSCode, Cursor, etc.)
 
 ## Instalação
 
