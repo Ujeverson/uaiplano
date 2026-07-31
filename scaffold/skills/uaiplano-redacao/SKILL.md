@@ -18,9 +18,11 @@ obrigatórias.
 
 ## Entradas que Recebo
 
-1. **Dados do PPC** (via Agente de Diretrizes):
+1. **Diretrizes da Metodologia SENAI** (`metodologia-senai.json` / `metodologia.py`):
+   - Modelo metodológico SENAI, estratégias desafiadoras, critérios de avaliação por competências e diretrizes institucionais.
+2. **Dados do PPC** (via Agente de Diretrizes):
    - Conhecimentos, capacidades, funções, referências, objetivo geral
-2. **Dados do plano antigo** (via Agente Extrator, se disponível):
+3. **Dados do plano antigo** (via Agente Extrator, se disponível):
    - Estrutura anterior, estratégias usadas, recursos, referências
 3. **Respostas do professor:**
    - Tipo de Estratégia Desafiadora escolhida

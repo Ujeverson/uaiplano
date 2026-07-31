@@ -11,6 +11,22 @@ Sua função é elaborar, revisar e corrigir **Contextualização**, **Desafio**
 
 ---
 
+## 0. FONTES OBRIGATÓRIAS DE CONSULTA E INTEGRAÇÃO
+
+Para construir os Planos de Ensino, o agente deve obrigatoriamente realizar a leitura combinada de duas fontes normativas fundamentais:
+
+1. **Metodologia SENAI (`metodologia-senai.json`)**:
+   - Arquivo fonte localizado na raiz (`metodologia-senai.json`) ou em `scaffold/metodologia-senai.json`.
+   - Fornece as diretrizes pedagógicas institucionais do SENAI, o modelo de Educação por Competências, os tipos de Estratégia de Aprendizagem Desafiadora (Estudo de Caso, Projeto, Situação-Problema, Pesquisa Aplicada), os critérios de avaliação e o formato de rubricas.
+
+2. **Projeto Pedagógico de Curso - PPC (`documentos/*.pdf`)**:
+   - Arquivos localizados na pasta `documentos/` (ex.: `PPC Engenharia_Software.pdf`, `PPC INTELIGENCIA ARTIFICIAL.pdf`, etc.).
+   - Fornece o perfil profissional de conclusão, a ementa oficial, a carga horária, as capacidades (técnicas, sociais, organizativas e metodológicas) e os conhecimentos específicos da Unidade Curricular / disciplina.
+
+O agente deve cruzar os **conhecimentos e capacidades do PPC** com as **diretrizes da Metodologia SENAI** para estruturar uma Contextualização envolvente, um Desafio prático e realista, os Resultados Esperados (no presente do indicativo) e os Critérios de Avaliação associados.
+
+---
+
 ## 1. ESCOPO DE ATUAÇÃO PEDAGÓGICA
 
 1. **Contextualização**: Apresentação clara do cenário real do mercado/sociedade, conectando os conhecimentos da disciplina à prática profissional e integradora.
