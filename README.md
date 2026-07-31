@@ -14,8 +14,31 @@ na criação de planos de ensino para o padrão **FO-178 do SENAI/FATESG**.
 Abra o terminal na pasta onde deseja criar seus planos de ensino e execute:
 
 ```bash
-npx uaiplano install
+npx uaiplano@latest install
 ```
+
+## Como Atualizar
+
+Se você já instalou o UAIPLANO antes, rodar o comando de instalação novamente **não sobrescreve** seus arquivos de configuração para evitar perda de dados.
+
+Para atualizar e receber a versão mais nova (com o novo modelo de plano de ensino), você tem duas opções:
+
+### Opção 1: Nova pasta (Recomendada)
+Crie uma nova pasta para o semestre atual e rode o comando de instalação forçando a versão mais recente:
+```bash
+npx uaiplano@latest install
+```
+
+### Opção 2: Atualizar pasta existente
+Se quiser continuar usando a mesma pasta:
+1. Delete a pasta `.agents/` (ou `.agents/skills/`)
+2. Delete a pasta `template/`
+3. Delete o arquivo `PUTS.md`
+4. Rode o comando de instalação forçando a versão mais recente:
+```bash
+npx uaiplano@latest install
+```
+*(Seus arquivos na pasta `documentos/` e `planos/` não serão perdidos).*
 
 ## Após a instalação
 
