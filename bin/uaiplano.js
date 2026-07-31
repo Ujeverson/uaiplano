@@ -3,7 +3,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const VERSAO = '1.0.0';
+const pkg = require('../package.json');
+const VERSAO = pkg.version;
 
 // ─── Cores para terminal ───────────────────────────────────────
 const cor = {
