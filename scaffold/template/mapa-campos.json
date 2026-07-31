@@ -1,7 +1,7 @@
 {
-  "versao": "1.0",
-  "template": "FO-178 - 04 - fo-178 PLANO DE ENSINO.docx",
-  "descricao": "Mapeamento de campos do plano de ensino FO-178 para fontes de dados",
+  "versao": "2.0",
+  "template": "FO-178 - modelo.docx",
+  "descricao": "Mapeamento de campos do plano de ensino FO-178 (novo modelo) para fontes de dados. Cada linha da grade = 1 encontro de 4h (plano de aula enxuto).",
 
   "pagina_1": {
     "curso": {
@@ -20,6 +20,8 @@
           "localizacao": "Campo 'Curso'"
         }
       ],
+      "tabela": 0,
+      "celula": "[0,1]",
       "obrigatorio": true
     },
 
@@ -40,6 +42,8 @@
         }
       ],
       "validar_contra": "ppc.matriz_curricular",
+      "tabela": 0,
+      "celula": "[1,1]",
       "obrigatorio": true
     },
 
@@ -59,7 +63,9 @@
           "localizacao": "Campo 'Carga Horária'"
         }
       ],
-      "regra": "Usar para calcular total de aulas: CH / 2",
+      "regra": "Usar para calcular total de encontros (linhas da grade): CH / 4. Cada encontro = 4h.",
+      "tabela": 0,
+      "celula": "[2,3]",
       "obrigatorio": true
     },
 
@@ -79,6 +85,8 @@
           "localizacao": "Campo 'Docente/Instrutor'"
         }
       ],
+      "tabela": 0,
+      "celula": "[2,1]",
       "obrigatorio": true
     },
 
@@ -98,6 +106,8 @@
           "localizacao": "Campo 'Função'"
         }
       ],
+      "tabela": 1,
+      "celula": "[1,1]",
       "obrigatorio": true
     },
 
@@ -117,6 +127,8 @@
           "localizacao": "Campo 'Subfunção'"
         }
       ],
+      "tabela": 1,
+      "celula": "[2,1]",
       "obrigatorio": true
     },
 
@@ -136,6 +148,8 @@
           "localizacao": "Campo 'Objetivo Geral da UC' ou 'Objetivo(s) do componente'"
         }
       ],
+      "tabela": 1,
+      "celula": "[3,1]",
       "obrigatorio": true
     },
 
@@ -156,6 +170,8 @@
             "localizacao": "Pergunta de múltipla escolha ao professor"
           }
         ],
+        "tabela": 2,
+        "celulas": "[1,0] a [1,3]",
         "obrigatorio": true
       },
 
@@ -170,6 +186,8 @@
           }
         ],
         "orientacao": "Apresentar cenário: como, por que, para que, tempo. Explicitar dados para reflexão do aluno.",
+        "tabela": 3,
+        "celula": "[2,1]",
         "obrigatorio": true
       },
 
@@ -183,6 +201,8 @@
             "localizacao": "Redigido enunciando o problema e atividades"
           }
         ],
+        "tabela": 3,
+        "celula": "[4,1]",
         "obrigatorio": true
       },
 
@@ -197,6 +217,8 @@
           }
         ],
         "vinculo": "Usado como base para criterios_avaliacao na grade de aulas",
+        "tabela": 3,
+        "celula": "[6,1]",
         "obrigatorio": true
       }
     }
@@ -204,25 +226,26 @@
 
   "pagina_2": {
     "grade_aulas": {
-      "descricao": "Tabela de aulas com todas as colunas",
-      "regra_geracao": "Total de linhas = carga_horaria / 2. Cada linha = 1 aula de 2h. Cada encontro = 2 aulas.",
+      "descricao": "Tabela de aulas — cada linha é um plano de aula enxuto (1 encontro de 4h)",
+      "regra_geracao": "Total de linhas = carga_horaria / 4. Cada linha = 1 encontro de 4h = 1 plano de aula enxuto.",
+      "tabela": 4,
 
       "colunas": {
         "aula_numero": {
-          "descricao": "Número sequencial e data da aula",
+          "descricao": "Número sequencial do encontro",
           "origem": "calculado",
-          "formato": "Xª aula — dd/mm (dia)",
-          "regra": "Sequencial de 1 até (CH / 2). Cada encontro tem 2 aulas. Pular feriados do calendário acadêmico."
+          "formato": "XX (número sequencial com 2 dígitos: 01, 02, 03...)",
+          "regra": "Sequencial de 01 até (CH / 4). Cada encontro = 4h. Pular feriados do calendário acadêmico."
         },
 
         "ch": {
-          "descricao": "Carga horária da aula",
+          "descricao": "Carga horária do encontro",
           "origem": "fixo",
-          "valor": "2h/aula"
+          "valor": "4h"
         },
 
-        "fundamentos_capacidades": {
-          "descricao": "Capacidades técnicas, sociais, organizativas e metodológicas",
+        "capacidades": {
+          "descricao": "Capacidades: Básicas, Técnicas e Socioemocional (consta no Diário de classe)",
           "fontes": [
             {
               "prioridade": 1,
@@ -231,12 +254,13 @@
               "localizacao": "ANEXO I – Ementário, dentro da UC"
             }
           ],
-          "regra": "Distribuir entre todas as aulas conforme os conhecimentos",
+          "regra": "Distribuir entre todos os encontros conforme os conhecimentos. Subdividir em seções com quebra de linha.",
+          "formato_detalhado": "Técnica\n[capacidade técnica 1]\n[capacidade técnica 2]\nSocioemocional\n[capacidade socioemocional 1]\n[capacidade socioemocional 2]",
           "agente_redacao": "uaiplano-redacao"
         },
 
         "conhecimentos": {
-          "descricao": "Conteúdo programático da aula",
+          "descricao": "Conteúdo programático do encontro",
           "fontes": [
             {
               "prioridade": 1,
@@ -245,39 +269,57 @@
               "localizacao": "ANEXO I – Ementário, dentro da UC"
             }
           ],
-          "regra": "Distribuir todos os tópicos ao longo das aulas. Repetição permitida para aprofundamento.",
+          "regra": "Distribuir todos os tópicos ao longo dos encontros. Repetição permitida para aprofundamento. Listar com quebras de linha.",
+          "formato_detalhado": "[Tópico 1].\n[Tópico 2].\n[Tópico 3].",
           "agente_redacao": "uaiplano-redacao"
         },
 
         "estrategias_ensino": {
-          "descricao": "Metodologia de ensino da aula",
+          "descricao": "Metodologia de ensino do encontro — formato detalhado com sub-atividades",
           "origem": "gerado",
           "agente": "uaiplano-redacao",
           "opcoes": [
-            "Aula expositiva dialogada",
+            "Exposição dialogada",
             "Atividade em grupo",
+            "Trabalho em grupo",
             "Sala invertida",
             "Sala em U",
             "Prática em laboratório de informática",
             "Resolução de exercícios",
             "Seminário apresentado pelos alunos",
-            "Estudo de caso dirigido"
+            "Estudo de caso dirigido",
+            "Estudo de caso",
+            "Oficina prática",
+            "Atividade prática",
+            "Situação contextualizada",
+            "Projeto"
           ],
-          "regra": "Não repetir mesma estratégia em mais de 3 aulas consecutivas"
+          "formato_detalhado": "[Estratégia 1]\n- [Descrição da atividade específica]\n[Estratégia 2]\n- [Descrição da atividade específica]\n[Estratégia 3]\n[Descrição da atividade específica]",
+          "regra": "NÃO repetir mesma estratégia em mais de 3 encontros consecutivos. Combinar 2-3 estratégias por encontro, detalhando as atividades com travessões."
         },
 
         "criterios_avaliacao": {
-          "descricao": "Critérios baseados nas rubricas",
+          "descricao": "Critérios de avaliação com verbos observáveis — formato detalhado",
           "origem": "gerado",
           "agente": "uaiplano-redacao",
-          "vinculo": "resultados_esperados + conhecimentos da aula"
+          "vinculo": "resultados_esperados + conhecimentos do encontro",
+          "formato_detalhado": "O estudante:\n- [Verbo observável no passado] [complemento].\n- [Verbo observável no passado] [complemento].\n- [Verbo observável no passado] [complemento].\n- [Verbo observável no passado] [complemento].",
+          "regra": "Sempre iniciar com 'O estudante:' seguido de bullets. Usar verbos observáveis (Identificou, Reconheceu, Aplicou, Diferenciou, Elaborou, Justificou, Apresentou, Participou, Demonstrou, Interpretou, etc.)."
         },
 
         "instrumentos_avaliacao": {
-          "descricao": "Ferramentas de avaliação",
+          "descricao": "Ferramentas de avaliação — formato lista com travessões",
           "origem": "gerado",
           "agente": "uaiplano-redacao",
           "opcoes": [
+            "Ficha de observação",
+            "Debate orientado",
+            "Registro das conclusões do grupo",
+            "Exercício prático individual",
+            "Produção textual",
+            "Mapa conceitual",
+            "Atividade escrita",
+            "Apresentação oral curta (pitch de pesquisa)",
             "Provas Dissertativas ou Objetivas",
             "Testes de Múltipla Escolha",
             "Listas de Exercícios",
@@ -293,12 +335,14 @@
             "Relatórios Descritivos",
             "Autoavaliação",
             "Quizzes e Jogos Digitais",
-            "Simulados"
-          ]
+            "Simulados",
+            "Rubricas do desafio proposto"
+          ],
+          "formato_detalhado": "- [Instrumento 1].\n- [Instrumento 2].\n- [Instrumento 3]."
         },
 
         "recursos_didaticos": {
-          "descricao": "Recursos e ambientes pedagógicos",
+          "descricao": "Recursos didáticos, ambientes pedagógicos e acessibilidade — formato lista com travessões",
           "fontes": [
             {
               "prioridade": 1,
@@ -313,18 +357,45 @@
             }
           ],
           "opcoes": [
+            "Sala de aula",
             "Sala comportamental",
             "Laboratório de informática",
             "Quadro branco",
             "Pincel para quadro",
             "Data Show / projetor",
+            "Projetor multimídia",
             "Apresentação em slides",
+            "Slides",
             "Google Forms / formulários online",
+            "Notebook",
             "Notebook do professor",
-            "Smartphone dos alunos"
-          ]
+            "Smartphone dos alunos",
+            "Estudo de caso impresso ou digital",
+            "Ambiente virtual de aprendizagem",
+            "Editor de texto",
+            "Artigos e relatórios técnicos",
+            "Biblioteca física e digital",
+            "Bases científicas"
+          ],
+          "formato_detalhado": "- [Recurso 1].\n- [Recurso 2].\n- [Recurso 3].\n- [Recurso 4]."
         }
       }
+    },
+
+    "nota_metodologia": {
+      "descricao": "Nota sobre Metodologia SENAI",
+      "tabela": 5,
+      "origem": "fixo",
+      "regra": "Manter o texto original. Não alterar."
+    },
+
+    "avaliacao_composicao_media": {
+      "descricao": "Composição da média da Unidade Curricular",
+      "tabela": 6,
+      "celula": "[1,0]",
+      "origem": "fixo",
+      "valor": "(N1+N2+NT)/3",
+      "regra": "Preencher automaticamente com a fórmula padrão (N1+N2+NT)/3."
     },
 
     "referencias_bibliograficas": {
@@ -344,13 +415,17 @@
         }
       ],
       "regra": "Manter formatação ABNT. Separar em Básica e Complementar.",
+      "tabela": 7,
+      "celula": "[1,0]",
       "obrigatorio": true
     },
 
     "parecer_area_educacional": {
       "descricao": "Parecer da coordenação pedagógica",
       "origem": "nao_preencher",
-      "regra": "Deixar em branco — preenchido pela coordenação da faculdade"
+      "regra": "Deixar em branco — preenchido pela coordenação da faculdade",
+      "tabela": 8,
+      "celula": "[1,0]"
     }
   }
 }
