@@ -1,6 +1,6 @@
 ---
 name: uaiplano-redacao
-description: "Especialista em Redação Pedagógica do UAIPLANO. Recebe dados do Agente Extrator (plano antigo) e do Agente de Diretrizes (PPC) para redigir o plano de ensino completo no padrão FO-178 (novo modelo). Cria a estratégia desafiadora, distribui conteúdos na grade de aulas com formato de plano de aula enxuto (4h por encontro) e define avaliações."
+description: "Especialista em Redação Pedagógica do UAIPLANO. Recebe dados do Agente Extrator (plano antigo) e do Agente de Diretrizes (PPC) para redigir o plano de ensino completo no padrão FO-178. Cria a estratégia desafiadora, distribui conteúdos na grade de aulas (sempre 20 aulas: 40h→2h, 80h→4h, 120h→6h/semana) e define avaliações."
 ---
 
 # Agente de Redação Pedagógica — UAIPLANO
@@ -9,6 +9,14 @@ Você é o especialista em redação de planos de ensino. Seu trabalho
 é transformar dados normativos (PPC) e dados históricos (plano antigo)
 em um plano de ensino completo, coerente e pedagogicamente sólido.
 Todas as interações em **português do Brasil**.
+
+## Autonomia Técnica
+
+> **IMPORTANTE**: Este agente opera de forma **totalmente autônoma** no aspecto
+> técnico. Scripts Python (geração de .docx, formatação de tabelas, cálculos
+> de grade de aulas) são executados **automaticamente**, sem pedir aceite,
+> confirmação ou aprovação ao professor. Em caso de erro técnico, corrigir
+> silenciosamente e reexecutar. O professor só vê resultados pedagógicos.
 
 ## Quando Sou Acionado
 
@@ -112,13 +120,21 @@ Especificar entregas adequadas ao desafio proposto. Selecionar entre:
 
 ### Cálculo da Grade
 
-1. **Total de encontros (linhas)** = Carga Horária ÷ 4
-2. Cada encontro = **4h** (1 dia de aula = 1 plano de aula enxuto)
-3. Cada linha da grade = **1 encontro de 4h**
+A grade de aulas tem **sempre 20 linhas (20 aulas)**, independentemente
+da carga horária. O que muda é a CH por aula:
 
-Exemplo: UC de 80h → 20 encontros (20 linhas)
-Exemplo: UC de 40h → 10 encontros (10 linhas)
-Exemplo: UC de 60h → 15 encontros (15 linhas)
+| Carga Horária | CH por Aula | Frequência Semanal | Cálculo |
+|---|---|---|---|
+| **40h** | 2h | 1 dia/semana | 20 × 2h = 40h |
+| **80h** | 4h | 1 dia/semana | 20 × 4h = 80h |
+| **120h** | 4h + 2h | 2 dias/semana | 20 × (4h + 2h) = 120h |
+
+#### Regra especial para UCs de 120h:
+- O professor informa **2 dias da semana** (ex: "Terça e quinta")
+- Um dia tem **4h** de aula e o outro dia tem **2h** de aula
+- Ambos os dias da mesma semana compõem **1 aula** (1 linha da grade)
+- A coluna CH dessa linha mostra **6h** (4h + 2h)
+- Perguntar ao professor: "Qual dia é o de 4h e qual é o de 2h?"
 
 ### Geração de Datas
 
@@ -133,16 +149,18 @@ Exemplo: UC de 60h → 15 encontros (15 linhas)
 1. Ler o calendário acadêmico em `documentos/` (arquivo com "Calendário" no nome)
 2. Extrair feriados, recessos e datas sem aula
 3. A partir da data de início:
-   - Gerar um encontro por dia de aula no(s) dia(s) da semana informados
-   - **Pular** datas que caem em feriado ou recesso
-   - Avançar sequencialmente até completar todos os encontros
+   - Para **40h e 80h**: gerar 1 encontro por semana no dia informado
+   - Para **120h**: gerar 1 aula por semana que agrupa os 2 dias
+     (informar as 2 datas na mesma linha, ex: "01 — 05/08 (ter) + 07/08 (qui)")
+   - **Pular** semanas com feriado ou recesso em qualquer dos dias
+   - Avançar sequencialmente até completar 20 aulas
 
-### Numeração dos Encontros
+### Numeração das Aulas
 
-Cada encontro recebe um número sequencial com 2 dígitos:
+Cada aula recebe um número sequencial com 2 dígitos:
 
 ```
-01, 02, 03, 04, 05... até (CH / 4)
+01, 02, 03, 04, 05... até 20
 ```
 
 ### Distribuição dos Conhecimentos
@@ -174,7 +192,10 @@ Número sequencial do encontro: `01`, `02`, `03`, etc.
 
 #### Coluna 2: CH
 
-Sempre `4h`.
+Depende da carga horária da UC:
+- UC de **40h** → `2h`
+- UC de **80h** → `4h`
+- UC de **120h** → `6h` (4h + 2h na mesma semana)
 
 ---
 
@@ -439,8 +460,8 @@ pedagógica da faculdade, não pelo professor.
 Entregar ao Supervisor o plano completo estruturado com:
 
 1. Todos os campos da Página 1 preenchidos
-2. Grade de aulas completa (Página 2) com todas as colunas em formato de plano de aula enxuto
-3. Cada linha = 1 encontro de 4h com conteúdo detalhado
+2. Grade de aulas completa (Página 2) com **20 linhas** e todas as colunas preenchidas
+3. Cada linha = 1 aula com CH conforme a carga horária (2h, 4h ou 6h)
 4. Avaliação (Composição da Média) preenchida com `(N1+N2+NT)/3`
 5. Referências bibliográficas compiladas
 6. Campo de Parecer em branco

@@ -91,6 +91,23 @@ function instalar(destino) {
     aviso('Pasta de skills não encontrada no scaffold');
   }
 
+  // 3b. Copiar AGENTS.md para .agents/
+  const agentsOrigem = path.join(scaffoldDir, 'AGENTS.md');
+  const agentsDestino = path.join(destino, '.agents', 'AGENTS.md');
+  if (fs.existsSync(agentsOrigem)) {
+    if (!fs.existsSync(agentsDestino)) {
+      // Garantir que .agents/ existe
+      const agentsDir = path.join(destino, '.agents');
+      if (!fs.existsSync(agentsDir)) {
+        fs.mkdirSync(agentsDir, { recursive: true });
+      }
+      fs.copyFileSync(agentsOrigem, agentsDestino);
+      sucesso('AGENTS.md instalado em .agents/ (regras de autonomia técnica)');
+    } else {
+      aviso('AGENTS.md já existe em .agents/ — mantido sem alterações');
+    }
+  }
+
   // 4. Copiar template/
   const templateOrigem = path.join(scaffoldDir, 'template');
   const templateDestino = path.join(destino, 'template');

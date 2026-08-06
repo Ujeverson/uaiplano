@@ -63,7 +63,7 @@
           "localizacao": "Campo 'Carga Horária'"
         }
       ],
-      "regra": "Usar para calcular total de encontros (linhas da grade): CH / 4. Cada encontro = 4h.",
+      "regra": "Usar para determinar a CH por aula: 40h→2h/aula, 80h→4h/aula, 120h→6h/aula(4h+2h). A grade SEMPRE tem 20 linhas (20 aulas).",
       "tabela": 0,
       "celula": "[2,3]",
       "obrigatorio": true
@@ -226,22 +226,22 @@
 
   "pagina_2": {
     "grade_aulas": {
-      "descricao": "Tabela de aulas — cada linha é um plano de aula enxuto (1 encontro de 4h)",
-      "regra_geracao": "Total de linhas = carga_horaria / 4. Cada linha = 1 encontro de 4h = 1 plano de aula enxuto.",
+      "descricao": "Tabela de aulas — SEMPRE 20 linhas. CH por aula varia: 40h→2h, 80h→4h, 120h→6h(4h+2h/semana)",
+      "regra_geracao": "Total de linhas = SEMPRE 20, independentemente da CH. CH por aula: 40h÷20=2h, 80h÷20=4h, 120h÷20=6h (4h em um dia + 2h em outro dia da mesma semana).",
       "tabela": 4,
 
       "colunas": {
         "aula_numero": {
           "descricao": "Número sequencial do encontro",
           "origem": "calculado",
-          "formato": "XX (número sequencial com 2 dígitos: 01, 02, 03...)",
-          "regra": "Sequencial de 01 até (CH / 4). Cada encontro = 4h. Pular feriados do calendário acadêmico."
+          "formato": "XX (número sequencial com 2 dígitos: 01, 02, 03... até 20)",
+          "regra": "Sequencial de 01 até 20. Sempre 20 aulas. Para 40h: cada aula=2h (1x/semana). Para 80h: cada aula=4h (1x/semana). Para 120h: cada aula=6h (4h+2h, 2x/semana). Pular feriados do calendário acadêmico."
         },
 
         "ch": {
-          "descricao": "Carga horária do encontro",
-          "origem": "fixo",
-          "valor": "4h"
+          "descricao": "Carga horária da aula",
+          "origem": "calculado",
+          "regra": "40h→2h, 80h→4h, 120h→6h (4h em um dia + 2h em outro)"
         },
 
         "capacidades": {

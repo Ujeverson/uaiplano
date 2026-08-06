@@ -79,7 +79,7 @@ try {
   const mapa = JSON.parse(
     fs.readFileSync(path.join(testDir, 'template', 'mapa-campos.json'), 'utf8')
   );
-  assert(mapa.versao === '1.0', 'mapa-campos.json tem versão 1.0');
+  assert(mapa.versao === '2.0', 'mapa-campos.json tem versão 2.0');
   assert(mapa.pagina_1 !== undefined, 'mapa-campos.json tem pagina_1');
   assert(mapa.pagina_2 !== undefined, 'mapa-campos.json tem pagina_2');
 } finally {
@@ -125,6 +125,53 @@ try {
   assert(puts.includes('documentos/'), 'Referencia documentos/');
   assert(puts.includes('planos/'), 'Referencia planos/');
   assert(puts.includes('FO-178'), 'Referencia FO-178');
+  assert(puts.includes('Autonomia Técnica'), 'Contém regras de Autonomia Técnica');
+  assert(puts.includes('NUNCA'), 'Contém proibição explícita (NUNCA)');
+} finally {
+  teardown();
+}
+
+// ─── Teste 6: AGENTS.md instalado ──────────────────────────────
+console.log('\nTeste 6: AGENTS.md com regras anti-aceite');
+setup();
+try {
+  runInstall();
+  const agentsPath = path.join(testDir, '.agents', 'AGENTS.md');
+  assert(fs.existsSync(agentsPath), '.agents/AGENTS.md existe');
+  const agents = fs.readFileSync(agentsPath, 'utf8');
+  assert(agents.includes('Autonomia Técnica'), 'AGENTS.md contém regras de Autonomia Técnica');
+  assert(agents.includes('NUNCA'), 'AGENTS.md contém proibição explícita (NUNCA)');
+  assert(agents.includes('aceite'), 'AGENTS.md menciona "aceite"');
+  assert(agents.includes('Planos de Ensino'), 'AGENTS.md referencia Planos de Ensino');
+} finally {
+  teardown();
+}
+
+// ─── Teste 7: Skill agente-especialista-python instalada ───────
+console.log('\nTeste 7: Skill agente-especialista-python instalada');
+setup();
+try {
+  runInstall();
+  const pythonSkillPath = path.join(
+    testDir, '.agents', 'skills', 'agente-especialista-python', 'SKILL.md'
+  );
+  assert(fs.existsSync(pythonSkillPath), 'agente-especialista-python/SKILL.md existe');
+  const skillContent = fs.readFileSync(pythonSkillPath, 'utf8');
+  assert(skillContent.includes('Auto-Aprovação'), 'Contém regra de Auto-Aprovação');
+  assert(skillContent.includes('NUNCA'), 'Contém proibição explícita (NUNCA)');
+} finally {
+  teardown();
+}
+
+// ─── Teste 8: AGENTS.md não sobrescrito ────────────────────────
+console.log('\nTeste 8: AGENTS.md existente não é sobrescrito');
+setup();
+try {
+  fs.mkdirSync(path.join(testDir, '.agents'), { recursive: true });
+  fs.writeFileSync(path.join(testDir, '.agents', 'AGENTS.md'), 'CUSTOMIZADO');
+  runInstall();
+  const agents = fs.readFileSync(path.join(testDir, '.agents', 'AGENTS.md'), 'utf8');
+  assert(agents === 'CUSTOMIZADO', 'AGENTS.md existente não foi sobrescrito');
 } finally {
   teardown();
 }
