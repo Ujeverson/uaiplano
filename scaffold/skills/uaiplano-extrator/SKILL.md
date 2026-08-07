@@ -65,6 +65,7 @@ campo, extraia e organize no seguinte formato JSON:
     "grade_aulas": [
       {
         "aula": 1,
+        "data": "26/01",
         "ch": 2,
         "fundamentos_capacidades": "...",
         "conhecimentos": "...",

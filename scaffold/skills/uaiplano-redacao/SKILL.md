@@ -136,32 +136,7 @@ da carga horária. O que muda é a CH por aula:
 - A coluna CH dessa linha mostra **6h** (4h + 2h)
 - Perguntar ao professor: "Qual dia é o de 4h e qual é o de 2h?"
 
-### Geração de Datas
 
-#### Perguntas ao professor:
-
-> "Qual a **data de início** das aulas dessa disciplina?"
->
-> "Em quais **dias da semana** acontecem as aulas?"
-
-#### Regras de geração:
-
-1. Ler o calendário acadêmico em `documentos/` (arquivo com "Calendário" no nome)
-2. Extrair feriados, recessos e datas sem aula
-3. A partir da data de início:
-   - Para **40h e 80h**: gerar 1 encontro por semana no dia informado
-   - Para **120h**: gerar 1 aula por semana que agrupa os 2 dias
-     (informar as 2 datas na mesma linha, ex: "01 — 05/08 (ter) + 07/08 (qui)")
-   - **Pular** semanas com feriado ou recesso em qualquer dos dias
-   - Avançar sequencialmente até completar 20 aulas
-
-### Numeração das Aulas
-
-Cada aula recebe um número sequencial com 2 dígitos:
-
-```
-01, 02, 03, 04, 05... até 20
-```
 
 ### Distribuição dos Conhecimentos
 
@@ -184,9 +159,40 @@ conteúdo detalhado e estruturado:
 
 ---
 
-#### Coluna 1: Aula nº
+#### Coluna 1: Aula nº (com data)
 
-Número sequencial do encontro: `01`, `02`, `03`, etc.
+Número sequencial do encontro **com a data do encontro**.
+
+**Formato para UC de 40h e 80h** (1 dia/semana):
+
+```
+XX — dd/mm (dia)
+```
+
+**Formato para UC de 120h** (2 dias/semana):
+
+```
+XX — dd/mm (dia) + dd/mm (dia)
+```
+
+**Exemplos reais:**
+- `01 — 05/08 (qui)`
+- `02 — 12/08 (qui)`
+- `01 — 05/08 (ter) + 07/08 (qui)`
+
+##### Regras de cálculo das datas:
+
+1. Perguntar ao professor a **data de início** e o(s) **dia(s) da semana**
+2. Ler o calendário acadêmico em `documentos/` (arquivo com "Calendário" no nome)
+3. Extrair feriados, recessos e datas sem aula
+4. A partir da data de início:
+   - Para **40h e 80h**: gerar 1 encontro por semana no dia informado
+   - Para **120h**: gerar 1 aula por semana agrupando os 2 dias
+   - **Pular** semanas com feriado ou recesso em qualquer dos dias
+   - Avançar sequencialmente até completar **20 aulas**
+
+> ⚠️ As datas são **obrigatórias** na coluna "Aula nº". Um plano sem datas
+> será rejeitado pelo Agente Supervisor.
 
 ---
 

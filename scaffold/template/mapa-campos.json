@@ -232,10 +232,27 @@
 
       "colunas": {
         "aula_numero": {
-          "descricao": "Número sequencial do encontro",
+          "descricao": "Número sequencial do encontro com a data",
           "origem": "calculado",
-          "formato": "XX (número sequencial com 2 dígitos: 01, 02, 03... até 20)",
-          "regra": "Sequencial de 01 até 20. Sempre 20 aulas. Para 40h: cada aula=2h (1x/semana). Para 80h: cada aula=4h (1x/semana). Para 120h: cada aula=6h (4h+2h, 2x/semana). Pular feriados do calendário acadêmico."
+          "formato": "XX — dd/mm (dia) (número sequencial + data do encontro + dia da semana abreviado). Para 120h com 2 dias/semana: XX — dd/mm (dia) + dd/mm (dia)",
+          "regra": "Sequencial de 01 até 20. Sempre 20 aulas. Para 40h: cada aula=2h (1x/semana). Para 80h: cada aula=4h (1x/semana). Para 120h: cada aula=6h (4h+2h, 2x/semana). Gerar datas sequenciais a partir da data de início informada pelo professor, pulando feriados e recessos do calendário acadêmico (arquivo com 'Calendário' no nome em documentos/).",
+          "exemplos": [
+            "01 — 05/08 (qui)",
+            "02 — 12/08 (qui)",
+            "01 — 05/08 (ter) + 07/08 (qui)"
+          ],
+          "data": {
+            "descricao": "Data do encontro, calculada a partir da data de início e dia(s) da semana informados pelo professor",
+            "fontes": [
+              {
+                "prioridade": 1,
+                "origem": "calculado",
+                "agente": "uaiplano-redacao",
+                "localizacao": "Calculado a partir da data de início + dia(s) da semana + calendário acadêmico"
+              }
+            ],
+            "regra": "Gerar datas sequenciais a partir da data de início, pulando feriados e recessos do calendário acadêmico em documentos/"
+          }
         },
 
         "ch": {
