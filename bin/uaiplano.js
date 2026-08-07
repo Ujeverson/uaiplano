@@ -85,7 +85,7 @@ function instalar(destino) {
   const skillsDestino = path.join(destino, '.agents', 'skills');
   info('Instalando agentes especializados...');
   if (fs.existsSync(skillsOrigem)) {
-    copiarRecursivo(skillsOrigem, skillsDestino);
+    copiarRecursivo(skillsOrigem, skillsDestino, { sobrescrever: true });
     sucesso('Agentes instalados em .agents/skills/');
   } else {
     aviso('Pasta de skills não encontrada no scaffold');
@@ -113,7 +113,7 @@ function instalar(destino) {
   const templateDestino = path.join(destino, 'template');
   info('Copiando template FO-178...');
   if (fs.existsSync(templateOrigem)) {
-    copiarRecursivo(templateOrigem, templateDestino);
+    copiarRecursivo(templateOrigem, templateDestino, { sobrescrever: true });
     sucesso('Template instalado em template/');
   } else {
     aviso('Pasta de template não encontrada no scaffold');
